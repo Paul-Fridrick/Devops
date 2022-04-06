@@ -1,8 +1,8 @@
 ##
-## EPITECH PROJECT, 2019
-## Makefile
+## EPITECH PROJECT, 2022
+## Untitled (Workspace)
 ## File description:
-## make file for test run
+## Makefile
 ##
 
 CC      	=	gcc
