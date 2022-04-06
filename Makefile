@@ -1,40 +1,36 @@
 ##
-## EPITECH PROJECT, 2022
+## EPITECH PROJECT, 2019
 ## Makefile
 ## File description:
-## my_sokoban
+## rtfm
 ##
 
-SRC = $(wildcard *c)
+CC			=	gcc
 
-NAME = Devops
+SRC			=	print.c
 
-OBJ = $(SRC:.c=.o)
+OBJ			=	$(SRC:.c=.o)
 
-CFLAGS = -Wall -Wextra -lncurses
+NAME		=	binary
 
-RM = rm -f
+$(NAME):	 $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
 
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(OBJ) $(CFLAGS)
-	$(RM) $(OBJ)
+all:	$(NAME)
 
 tests_run:
-	make
-	$(CC) test/test.c -o unit_tests --coverage -lcriterion
-	./unit_tests
+	make -C tests/
 
 clean:
-	$(RM) $(OBJ)
+	rm -f $(OBJ)
+
+coverage:
+	@gcovr
 
 fclean: clean
-	$(RM) $(NAME)
-	$(RM) a.out
-	$(RM) *.o
-	$(RM) unit_tests
-	$(RM) *.gcda
-	$(RM) *.gcno
+	rm -f $(NAME)
+	make fclean -C ./tests
 
-re: fclean all
+re:	fclean all
+
+.PHONY:	$(NAME) all clean fclean
