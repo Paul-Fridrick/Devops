@@ -1,29 +1,29 @@
 ##
-## EPITECH PROJECT, 2021
+## EPITECH PROJECT, 2022
 ## Makefile
 ## File description:
-## infin_add
+## my_sokoban
 ##
 
-NAME	= libmy.a
+SRC = $(wildcard *c)
 
-RM	= rm -f
+NAME = Devops
 
-SRC	= 	s$(wildcard *.c)
+OBJ = $(SRC:.c=.o)
 
+CFLAGS = -Wall -Wextra -lncurses
 
-
-OBJ	= $(SRC:.c=.o)
+RM = rm -f
 
 all: $(NAME)
 
-$(NAME):	$(OBJ)
-	 ar rc $(NAME) $(OBJ)
-	 make clean
+$(NAME): $(OBJ)
+	$(CC) -o $(NAME) $(OBJ) $(CFLAGS)
+	$(RM) $(OBJ)
 
 tests_run:
 	make
-	$(CC) test/test.c -o unit_tests --coverage -lcriterion -L . -lmy
+	$(CC) test/test.c -o unit_tests --coverage -lcriterion
 	./unit_tests
 
 clean:
@@ -32,9 +32,9 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 	$(RM) a.out
+	$(RM) *.o
 	$(RM) unit_tests
 	$(RM) *.gcda
 	$(RM) *.gcno
 
 re: fclean all
-
