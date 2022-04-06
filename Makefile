@@ -9,16 +9,7 @@ NAME	= libmy.a
 
 RM	= rm -f
 
-SRC	= 	sources/my_strlen.c				\
-		sources/my_putstr.c				\
-		sources/my_putchar.c			\
-		sources/my_put_nbr.c			\
-		sources/my_printf.c 			\
-		sources/my_put_unsigned_nbr.c	\
-		sources/my_put_nbr_base.c 		\
-		sources/my_put_nbr_bin.c 		\
-		sources/my_put_long.c 			\
-		sources/my_putstr_unprintable.c\
+SRC	= 	s$(wildcard *.c)
 
 
 
