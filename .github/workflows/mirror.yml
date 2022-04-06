@@ -7,14 +7,15 @@ on:
     branches-ignore:
       - "ga-ignore"
 env:
+  MIRROR_URL: "git@github.com:EpitechPromo2026/B-DOP-200-NCY-2-1-chocolatine-paul.fridrick.git"
   EXECUTABLES: ""
 jobs:
-  check_repo:
-    name: "Check if the repo is clean"
+  check_repository_cleanliness:
+    name: "check_repository_cleanliness"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - id: check_repo
+      - id: check_repository_cleanliness
         run: |
           BAD_FILES=$(find . -type f -not -path "./.git/*" -wholename "*tmp/*" -or -iname "*pain_au_chocolat*" -or -name "*~" -or -name "*.o" -or -name "*.a" -or -name "*.so" -or -name "*.gcno" -or -name "*.gdca" -or -name "*.gcov")
           for FILES in $BAD_FILES; do
@@ -24,7 +25,7 @@ jobs:
             exit 1
           fi
   check_if_compil:
-    needs: [check_repo]
+    needs: [check_repository_cleanliness]
     name: "check if the make compil"
     runs-on: ubuntu-latest
     container:
@@ -64,6 +65,6 @@ jobs:
       - uses: pixta-dev/repository-mirroring-action@v1
         with:
           target_repo_url:
-            "git@github.com:EpitechPromo2026/B-DOP-200-NCY-2-1-chocolatine-paul.fridrick.git"
+            ${{env.MIRROR_URL}}
           ssh_private_key:
             ${{secrets.FDP}}
